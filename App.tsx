@@ -7,7 +7,11 @@ import {
 
 import { THEME } from './src/styles/theme';
 
+import Logo from '../assets/logo_primary.svg';
+
+import { Home } from './src/screens/Home';
 import { SignIn } from './src/screens/SignIn';
+import { Register } from './src/screens/Register';
 import { Loading } from './src/components/Loading';
 
 export default function App() {
@@ -20,7 +24,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <SignIn /> : <Loading />}
+      {fontsLoaded ? <Register /> : <Loading />}
     </NativeBaseProvider>
   );
 }
