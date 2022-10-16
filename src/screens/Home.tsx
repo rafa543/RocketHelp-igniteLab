@@ -50,14 +50,14 @@ export function Home() {
 
   useEffect(() => {
     setIsLoading(true)
-
+    
     const subscriber = firestore()
     .collection('orders')
     .where('status', '==', statusSelected)
     .onSnapshot(snapshot => {
       const data = snapshot.docs.map(doc => {
         const {patrimony, description, status, created_at} = doc.data()
-
+        
         return {
           id:doc.id,
           patrimony,
@@ -66,11 +66,27 @@ export function Home() {
           when: dateFormat(created_at)
         }
       })
+
       setOrders(data)
       setIsLoading(false)
     })
 
     return subscriber
+    // const subscriber = firestore()
+    // .collection('orders')
+    // .where('status', '==', statusSelected)
+    // .onSnapshot({
+    //   error: (e) => console.error(e+ " deu error"),
+    //   next: (querySnapshot) => {
+    //     var cities = [];
+
+    //     querySnapshot.forEach((doc) => {
+    //       console.log(doc.data());
+    //     });
+    //     console.log('Current cities in CA: ', cities.join(', '));
+    //   }
+    // });
+
   }, [statusSelected]) 
 
   return (
